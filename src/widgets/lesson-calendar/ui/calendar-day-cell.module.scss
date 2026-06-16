@@ -1,0 +1,63 @@
+.cell {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	min-height: 118px;
+	padding: 12px;
+	border: 1px solid transparent;
+	border-radius: 16px;
+	background: #252a3a;
+	text-align: left;
+	transition:
+		border-color 0.2s ease,
+		box-shadow 0.2s ease,
+		background 0.2s ease;
+}
+
+.cell:hover {
+	background: #2a3042;
+}
+
+.cellOutsideMonth {
+	background: #1f2433;
+}
+
+.cellToday {
+	background: linear-gradient(180deg, rgba(66, 133, 244, 0.22) 0%, #252a3a 100%);
+	box-shadow: inset 0 0 0 1px rgba(66, 133, 244, 0.35);
+}
+
+.cellSelected {
+	border-color: #4f8df7;
+	box-shadow: 0 0 0 1px rgba(79, 141, 247, 0.45);
+}
+
+.dayNumber {
+	align-self: flex-start;
+	min-width: 28px;
+	padding: 4px 0;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 1;
+	color: #eef2fb;
+}
+
+.dayNumberToday {
+	padding: 4px 8px;
+	border-radius: 999px;
+	background: #4285f4;
+	color: #fff;
+}
+
+.dayNumberOutsideMonth {
+	color: #6d7894;
+}
+
+.events {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	justify-content: flex-end;
+	gap: 6px;
+	margin-top: auto;
+}
