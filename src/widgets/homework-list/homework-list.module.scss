@@ -1,0 +1,187 @@
+.list {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.card {
+	border: 1px solid #e5ebf7;
+	border-radius: 14px;
+	background: #fdfefe;
+}
+
+.summary {
+	list-style: none;
+	cursor: pointer;
+	padding: 16px;
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 14px;
+}
+
+.summary::-webkit-details-marker {
+	display: none;
+}
+
+.summaryMain {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.label {
+	font-size: 13px;
+	font-weight: 700;
+	color: #70809f;
+}
+
+.lessonTitle {
+	font-size: 17px;
+	font-weight: 600;
+	color: #17284d;
+}
+
+.meta {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	gap: 15px;
+	flex-shrink: 0;
+}
+
+.deadlineLabel {
+	font-size: 13px;
+	font-weight: 700;
+	color: #70809f;
+}
+
+.deadlineLine {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.deadline {
+	font-size: 13px;
+	font-weight: 600;
+	color: #314260;
+}
+
+.status {
+	margin-top: 2px;
+	padding: 4px 10px;
+	border-radius: 999px;
+	font-size: 12px;
+	font-weight: 700;
+}
+
+.statusDone {
+	color: #18794e;
+	background: #def7e8;
+}
+
+.statusMissed {
+	color: #b42318;
+	background: #fee4e2;
+}
+
+.statusReturned {
+	color: #b54708;
+	background: #fef0c7;
+}
+
+.statusReview {
+	color: #4338ca;
+	background: #e0e7ff;
+}
+
+.statusTodo {
+	color: #475467;
+	background: #eaecf0;
+}
+
+.content {
+	display: grid;
+	grid-template-rows: 0fr;
+	transition: grid-template-rows 0.3s ease;
+}
+
+details[open] .content {
+	grid-template-rows: 1fr;
+}
+
+.detailsBody {
+	overflow: hidden;
+	padding: 0 16px;
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+	border-top: 1px solid #eef2fb;
+	opacity: 0;
+	transform: translateY(-6px);
+	transition:
+		opacity 0.25s ease,
+		transform 0.25s ease,
+		padding 0.25s ease;
+}
+
+details[open] .detailsBody {
+	padding: 14px 16px 16px;
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.detailsLabel {
+	font-size: 13px;
+	font-weight: 700;
+	color: #2f4166;
+}
+
+.fullDescription {
+	font-size: 14px;
+	line-height: 1.5;
+	color: #4b5e85;
+}
+
+.materialsHint {
+	margin-top: 4px;
+	font-size: 14px;
+	line-height: 1.45;
+	color: #62759b;
+}
+
+.materialsList {
+	margin-top: 6px;
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.materialItem {
+	font-size: 14px;
+	color: #5a6d94;
+}
+
+.actions {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.ctaButton {
+	height: 40px;
+	padding: 0 16px;
+	border-radius: 10px;
+	background: linear-gradient(90deg, #4461f2 0%, #6a7dff 100%);
+	color: #fff;
+	font-size: 14px;
+	font-weight: 600;
+	transition:
+		transform 0.2s ease,
+		box-shadow 0.2s ease;
+
+	&:hover {
+		transform: translateY(-1px);
+		box-shadow: 0 8px 16px rgba(68, 97, 242, 0.2);
+	}
+}

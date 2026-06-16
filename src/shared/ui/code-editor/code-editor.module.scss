@@ -1,0 +1,40 @@
+.wrapper {
+	overflow: hidden;
+	border: 1px solid #1f2e57;
+	border-radius: 12px;
+}
+
+.loading {
+	height: 300px;
+	padding: 18px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	background: #0f172d;
+}
+
+.loadingLine,
+.loadingLineShort {
+	height: 12px;
+	border-radius: 6px;
+	background: linear-gradient(90deg, #1d2a4f 0%, #2a3c6f 50%, #1d2a4f 100%);
+	background-size: 200% 100%;
+	animation: shimmer 1.4s infinite;
+}
+
+.loadingLine {
+	width: 100%;
+}
+
+.loadingLineShort {
+	width: 62%;
+}
+
+@keyframes shimmer {
+	0% {
+		background-position: 200% 0;
+	}
+	100% {
+		background-position: -200% 0;
+	}
+}

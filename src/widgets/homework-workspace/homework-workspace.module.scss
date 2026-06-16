@@ -1,0 +1,126 @@
+.workspace {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.fadeIn {
+	animation: fadeInView 0.26s ease forwards;
+}
+
+.fadeOut {
+	animation: fadeOutView 0.22s ease forwards;
+}
+
+.pageTitle {
+	font-size: clamp(28px, 4vw, 36px);
+	font-weight: 700;
+	line-height: 1.1;
+	color: #122142;
+}
+
+.workspaceHeader {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.backButton {
+	align-self: flex-start;
+	height: 36px;
+	width: 36px;
+	border: 1px solid #ccd7f4;
+	border-radius: 10px;
+	font-size: 18px;
+	font-weight: 600;
+	color: #334974;
+	background: #fff;
+}
+
+.title {
+	font-size: 22px;
+	font-weight: 700;
+	color: #142549;
+}
+
+.meta {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	padding-top: 16px;
+	border-top: 1px solid #e6ecf8;
+}
+
+.blockLabel {
+	font-size: 13px;
+	font-weight: 700;
+	color: #2f4166;
+}
+
+.description {
+	max-width: 900px;
+	font-size: 16px;
+	line-height: 1.55;
+	color: #60708f;
+}
+
+.materials {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	font-size: 14px;
+	color: #5a6d94;
+}
+
+.editorSection {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	padding-top: 16px;
+	border-top: 1px solid #e6ecf8;
+}
+
+.actions {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.saveButton {
+	height: 42px;
+	padding: 0 18px;
+	border-radius: 10px;
+	background: linear-gradient(90deg, #4461f2 0%, #6a7dff 100%);
+	color: #fff;
+	font-size: 14px;
+	font-weight: 600;
+	transition:
+		transform 0.2s ease,
+		box-shadow 0.2s ease;
+
+	&:hover {
+		transform: translateY(-1px);
+		box-shadow: 0 8px 16px rgba(68, 97, 242, 0.2);
+	}
+}
+
+@keyframes fadeInView {
+	from {
+		opacity: 0;
+		transform: translateY(6px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes fadeOutView {
+	from {
+		opacity: 1;
+		transform: translateY(0);
+	}
+	to {
+		opacity: 0;
+		transform: translateY(-6px);
+	}
+}

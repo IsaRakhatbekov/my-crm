@@ -1,0 +1,14 @@
+.button {
+	display: block;
+	width: 100%;
+	padding: 10px 12px;
+	border-radius: 10px;
+	font-size: 15px;
+	font-weight: 600;
+	color: #314260;
+	transition: background-color 0.2s ease;
+
+	&:hover {
+		background: #edf1ff;
+	}
+}

@@ -1,0 +1,21 @@
+.sidebar {
+	padding: 18px;
+	border-radius: 16px;
+	background: #fff;
+	border: 1px solid #e4eaf7;
+}
+
+.menuTitle {
+	font-size: 12px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.07em;
+	color: #7987a6;
+}
+
+.nav {
+	margin-top: 12px;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}

@@ -14,7 +14,7 @@ export default function HomePage() {
 							Войдите в систему, чтобы продолжить работу с клиентами и задачами.
 						</p>
 
-						<form className={styles.form}>
+						<form className={styles.form} action='/dashboard'>
 							<div className={styles.formControl}>
 								<Label htmlFor='email'>Email</Label>
 								<Input id='email' name='email' type='email' placeholder='you@company.com' />
