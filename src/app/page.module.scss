@@ -1,0 +1,140 @@
+.home {
+	min-height: 100vh;
+	padding: 28px 0;
+	background: linear-gradient(180deg, #f6f8fc 0%, #eef2f9 100%);
+
+	.container {
+		height: 100%;
+	}
+
+	.wrapper {
+		min-height: calc(100vh - 56px);
+		padding: 44px;
+		display: grid;
+		grid-template-columns: 1fr 1.2fr;
+		gap: 28px;
+		border-radius: 28px;
+		background-color: #fff;
+		box-shadow:
+			0 24px 60px rgba(22, 34, 77, 0.08),
+			0 8px 20px rgba(22, 34, 77, 0.06);
+	}
+
+	.leftSide {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+		align-items: center;
+		justify-content: center;
+		padding: 8px 18px;
+
+		.kicker {
+			font-size: 12px;
+			font-weight: 700;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+			color: #6b7a99;
+		}
+
+		.subtitle {
+			max-width: 380px;
+			font-size: 16px;
+			line-height: 1.5;
+			color: #6e7891;
+		}
+	}
+
+	.title {
+		font-size: clamp(34px, 4vw, 44px);
+		font-weight: 700;
+		line-height: 1.12;
+		color: #111c34;
+	}
+
+	.form {
+		margin-top: 8px;
+		width: 100%;
+		max-width: 380px;
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+	}
+
+	.formControl {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.submit {
+		height: 48px;
+		margin-top: 6px;
+		border-radius: 12px;
+		background: linear-gradient(90deg, #4461f2 0%, #6a7dff 100%);
+		color: #fff;
+		font-size: 16px;
+		font-weight: 600;
+		transition:
+			transform 0.2s ease,
+			box-shadow 0.2s ease;
+
+		&:hover {
+			transform: translateY(-1px);
+			box-shadow: 0 10px 20px rgba(68, 97, 242, 0.25);
+		}
+	}
+
+	.rightSide {
+		position: relative;
+		overflow: hidden;
+		border-radius: 24px;
+		background: linear-gradient(155deg, #171f3b 0%, #2a3f8f 100%);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.image {
+		width: min(94%, 640px);
+		height: auto;
+		filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.2));
+	}
+}
+
+@media (max-width: 1024px) {
+	.home {
+		.wrapper {
+			grid-template-columns: 1fr;
+			gap: 20px;
+			padding: 24px;
+		}
+
+		.leftSide {
+			padding: 8px;
+		}
+
+		.form {
+			max-width: 100%;
+		}
+
+		.rightSide {
+			min-height: 280px;
+		}
+	}
+}
+
+@media (max-width: 640px) {
+	.home {
+		padding: 0;
+
+		.container {
+			padding: 0;
+		}
+
+		.wrapper {
+			min-height: 100vh;
+			border-radius: 0;
+			padding: 24px 18px;
+		}
+	}
+}
