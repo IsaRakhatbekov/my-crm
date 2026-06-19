@@ -82,7 +82,25 @@
 
 .actions {
 	display: flex;
+	align-items: center;
 	justify-content: flex-end;
+	gap: 12px;
+	flex-wrap: wrap;
+}
+
+.statusMessage {
+	font-size: 14px;
+	color: #60708f;
+}
+
+.errorMessage {
+	font-size: 14px;
+	color: #c62828;
+}
+
+.successMessage {
+	font-size: 14px;
+	color: #2e7d32;
 }
 
 .saveButton {
@@ -95,11 +113,17 @@
 	font-weight: 600;
 	transition:
 		transform 0.2s ease,
-		box-shadow 0.2s ease;
+		box-shadow 0.2s ease,
+		opacity 0.2s ease;
 
-	&:hover {
+	&:hover:not(:disabled) {
 		transform: translateY(-1px);
 		box-shadow: 0 8px 16px rgba(68, 97, 242, 0.2);
+	}
+
+	&:disabled {
+		opacity: 0.7;
+		cursor: not-allowed;
 	}
 }
 

@@ -3,6 +3,10 @@
 import { useEffect, useMemo, useState } from 'react'
 
 import type { HomeworkItem } from '@/entities/homework/model/types'
+import {
+	getHomeworkSubmission,
+	saveHomeworkSubmission,
+} from '@/features/homework-submission'
 import { CodeEditor } from '@/shared/ui/code-editor'
 import { HomeworkList } from '@/widgets/homework-list'
 
@@ -13,8 +17,7 @@ interface HomeworkWorkspaceProps {
 }
 
 const initialCode = `function solveTask() {
-  // TODO: add your solution
-  return 'ready'
+  return
 }
 `
 
@@ -23,10 +26,49 @@ export default function HomeworkWorkspace({ items }: HomeworkWorkspaceProps) {
 	const [code, setCode] = useState(initialCode)
 	const [isSwitchingToWorkspace, setIsSwitchingToWorkspace] = useState(false)
 	const [isSwitchingToList, setIsSwitchingToList] = useState(false)
+	const [isLoadingCode, setIsLoadingCode] = useState(false)
+	const [isSaving, setIsSaving] = useState(false)
+	const [saveMessage, setSaveMessage] = useState<string | null>(null)
+	const [saveError, setSaveError] = useState<string | null>(null)
 
 	useEffect(() => {
 		void import('@monaco-editor/react')
 	}, [])
+
+	useEffect(() => {
+		if (!activeHomeworkId) {
+			return
+		}
+
+		let cancelled = false
+
+		const loadSubmission = async () => {
+			setIsLoadingCode(true)
+			setSaveMessage(null)
+			setSaveError(null)
+
+			const result = await getHomeworkSubmission(activeHomeworkId)
+
+			if (cancelled) {
+				return
+			}
+
+			if (result.error) {
+				setSaveError(result.error)
+				setCode(initialCode)
+			} else {
+				setCode(result.data?.code ?? initialCode)
+			}
+
+			setIsLoadingCode(false)
+		}
+
+		void loadSubmission()
+
+		return () => {
+			cancelled = true
+		}
+	}, [activeHomeworkId])
 
 	const activeHomework = useMemo(
 		() => items.find(({ id }) => id === activeHomeworkId) ?? null,
@@ -51,6 +93,27 @@ export default function HomeworkWorkspace({ items }: HomeworkWorkspaceProps) {
 		}, 220)
 	}
 
+	const handleSave = async () => {
+		if (!activeHomeworkId || isSaving) {
+			return
+		}
+
+		setIsSaving(true)
+		setSaveMessage(null)
+		setSaveError(null)
+
+		const result = await saveHomeworkSubmission(activeHomeworkId, code)
+
+		setIsSaving(false)
+
+		if (result.error) {
+			setSaveError(result.error)
+			return
+		}
+
+		setSaveMessage('Домашнее задание сохранено')
+	}
+
 	if (!activeHomework) {
 		return (
 			<section
@@ -65,7 +128,9 @@ export default function HomeworkWorkspace({ items }: HomeworkWorkspaceProps) {
 	const { lessonTitle, fullDescription, materials } = activeHomework
 
 	return (
-		<section className={`${styles.workspace} ${isSwitchingToList ? styles.fadeOut : styles.fadeIn}`}>
+		<section
+			className={`${styles.workspace} ${isSwitchingToList ? styles.fadeOut : styles.fadeIn}`}
+		>
 			<div className={styles.workspaceHeader}>
 				<button
 					className={styles.backButton}
@@ -116,10 +181,23 @@ export default function HomeworkWorkspace({ items }: HomeworkWorkspaceProps) {
 
 			<div className={styles.editorSection}>
 				<p className={styles.blockLabel}>Редактор кода:</p>
-				<CodeEditor value={code} onChange={setCode} language='typescript' />
+				{isLoadingCode ? (
+					<p className={styles.statusMessage}>Загружаем сохранённый код...</p>
+				) : (
+					<CodeEditor value={code} onChange={setCode} language='typescript' />
+				)}
 				<div className={styles.actions}>
-					<button className={styles.saveButton} type='button'>
-						Сохранить ДЗ
+					{saveError ? <p className={styles.errorMessage}>{saveError}</p> : null}
+					{saveMessage ? (
+						<p className={styles.successMessage}>{saveMessage}</p>
+					) : null}
+					<button
+						className={styles.saveButton}
+						type='button'
+						onClick={handleSave}
+						disabled={isSaving || isLoadingCode}
+					>
+						{isSaving ? 'Сохраняем...' : 'Сохранить ДЗ'}
 					</button>
 				</div>
 			</div>
