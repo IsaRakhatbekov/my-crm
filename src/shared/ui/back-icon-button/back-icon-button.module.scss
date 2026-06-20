@@ -1,0 +1,24 @@
+.button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	height: 36px;
+	width: 36px;
+	border: 1px solid #ccd7f4;
+	border-radius: 10px;
+	background: #fff;
+	color: #334974;
+	text-decoration: none;
+	cursor: pointer;
+	transition: border-color 0.15s ease, box-shadow 0.15s ease;
+
+	&:hover {
+		border-color: #b7c7ef;
+		box-shadow: 0 4px 12px rgba(18, 33, 66, 0.08);
+	}
+}
+
+.icon {
+	width: 18px;
+	height: 18px;
+}

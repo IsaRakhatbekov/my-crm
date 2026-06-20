@@ -1,4 +1,4 @@
-import { LogIn } from '@/features/logIn'
+import { RolePicker } from '@/features/logIn'
 
 import styles from './page.module.scss'
 
@@ -11,17 +11,17 @@ export default function HomePage() {
 						<p className={styles.kicker}>CRM Platform</p>
 						<h1 className={styles.title}>С возвращением</h1>
 						<p className={styles.subtitle}>
-							Войдите в систему, чтобы продолжить работу с клиентами и задачами.
+							Выберите роль, чтобы открыть нужный интерфейс.
 						</p>
 
-						<LogIn />
+						<RolePicker />
 					</section>
 
 					<div className={styles.rightSide}>
 						<img
 							className={styles.image}
-							src='/login-illustration.svg'
-							alt='Иллюстрация панели управления CRM'
+							src='/home-bg.JPG'
+							alt='Фоновое изображение CRM'
 						/>
 					</div>
 				</div>

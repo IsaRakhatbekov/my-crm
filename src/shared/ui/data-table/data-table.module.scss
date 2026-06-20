@@ -1,0 +1,115 @@
+.wrap {
+	width: 100%;
+	border: 1px solid #e8ebf0;
+	border-radius: 20px;
+	background: #fff;
+	box-shadow: 0 1px 2px rgba(18, 33, 66, 0.04);
+	overflow: hidden;
+}
+
+.scroll {
+	width: 100%;
+	overflow-x: auto;
+}
+
+.table {
+	width: 100%;
+	border-collapse: collapse;
+	table-layout: fixed;
+}
+
+.th {
+	padding: 14px 20px;
+	font-size: 12px;
+	font-weight: 600;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	text-align: left;
+	color: #8a96ab;
+	background: #f6f8fb;
+	border-bottom: 1px solid #e8ebf0;
+}
+
+.td {
+	padding: 16px 20px;
+	font-size: 14px;
+	color: #334155;
+	border-bottom: 1px solid #eef1f6;
+	vertical-align: middle;
+}
+
+.table tbody tr:last-child .td {
+	border-bottom: 0;
+}
+
+.table tbody tr:hover {
+	background: #fafbfd;
+}
+
+.alignCenter {
+	text-align: center;
+}
+
+.alignRight {
+	text-align: right;
+}
+
+.primaryCell {
+	font-size: 15px;
+	font-weight: 600;
+	color: #122142;
+}
+
+.numericCell {
+	font-weight: 500;
+	color: #475569;
+}
+
+.badge {
+	display: inline-flex;
+	align-items: center;
+	padding: 5px 12px;
+	border-radius: 999px;
+	font-size: 13px;
+	font-weight: 600;
+	line-height: 1.2;
+}
+
+.badgeBlue {
+	background: #edf1ff;
+	color: #4461f2;
+}
+
+.badgeGray {
+	background: #f0f4f8;
+	color: #5a6d94;
+}
+
+.badgeNeutral {
+	background: #f3f5f9;
+	color: #60708f;
+}
+
+.footer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 12px 20px;
+	border-top: 1px solid #e8ebf0;
+	background: #fafbfd;
+
+	p {
+		margin: 0;
+		font-size: 13px;
+		color: #8a96ab;
+	}
+}
+
+.empty {
+	margin: 0;
+	padding: 32px 20px;
+	font-size: 14px;
+	line-height: 1.5;
+	color: #8a96ab;
+	text-align: center;
+}

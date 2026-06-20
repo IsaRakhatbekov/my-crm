@@ -1,0 +1,44 @@
+.infoGrid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: 16px;
+}
+
+.infoCard {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	padding: 18px 20px;
+	border: 1px solid #e8ebf0;
+	border-radius: 20px;
+	background: #fff;
+	box-shadow: 0 1px 2px rgba(18, 33, 66, 0.04);
+}
+
+.infoLabel {
+	margin: 0;
+	font-size: 13px;
+	font-weight: 500;
+	color: #8a96ab;
+}
+
+.infoValue {
+	margin: 0;
+	font-size: 18px;
+	font-weight: 700;
+	color: #122142;
+	word-break: break-word;
+}
+
+.section {
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+	width: 100%;
+}
+
+.sectionTitle {
+	font-size: 20px;
+	font-weight: 700;
+	color: #122142;
+}

@@ -25,15 +25,8 @@ export async function updateSession(request: NextRequest) {
 		},
 	)
 
-	const {
-		data: { user },
-	} = await supabase.auth.getUser()
-
-	if (!user && request.nextUrl.pathname.startsWith('/dashboard')) {
-		const url = request.nextUrl.clone()
-		url.pathname = '/'
-		return NextResponse.redirect(url)
-	}
+	// Обновляем сессию Supabase; для MVP dashboard открыт без авторизации.
+	await supabase.auth.getUser()
 
 	return supabaseResponse
 }

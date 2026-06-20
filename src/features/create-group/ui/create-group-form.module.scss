@@ -1,0 +1,342 @@
+.panel {
+	display: flex;
+	flex-direction: column;
+	gap: 28px;
+	max-width: 760px;
+	padding: 18px;
+	border: 1px solid #dfe6ff;
+	border-radius: 16px;
+	background: linear-gradient(180deg, #f8faff 0%, #ffffff 100%);
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.fieldRow {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.inputWrap {
+	flex: 1;
+	min-width: 0;
+}
+
+.message {
+	font-size: 14px;
+	line-height: 1.4;
+}
+
+.success {
+	color: #1f7a45;
+}
+
+.error {
+	color: #c0392b;
+}
+
+.membersSection {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	padding-top: 8px;
+}
+
+.membersSectionHeader {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.membersSectionTitle {
+	font-size: 20px;
+	font-weight: 700;
+	color: #122142;
+}
+
+.membersSectionSubtitle {
+	font-size: 14px;
+	color: #60708f;
+
+	strong {
+		color: #122142;
+	}
+}
+
+.memberActions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.comingSoonAction {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 2px;
+	min-height: 48px;
+	padding: 8px 16px;
+	border: 1px dashed #c5cedd;
+	border-radius: 12px;
+	background: #f8faff;
+	color: #8a96ab;
+	cursor: not-allowed;
+	text-align: left;
+
+	span {
+		font-size: 15px;
+		font-weight: 600;
+		line-height: 1.2;
+	}
+
+	small {
+		font-size: 12px;
+		line-height: 1.3;
+	}
+}
+
+.studentPanel {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	padding: 18px;
+	border: 1px solid #dfe6ff;
+	border-radius: 16px;
+	background: linear-gradient(180deg, #f8faff 0%, #ffffff 100%);
+}
+
+.studentPanelHeader {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+}
+
+.studentPanelTitle {
+	font-size: 17px;
+	font-weight: 700;
+	color: #122142;
+}
+
+.studentPanelHint {
+	font-size: 14px;
+	line-height: 1.45;
+	color: #60708f;
+}
+
+.studentForm {
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+}
+
+.studentField {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.detectedType {
+	font-size: 13px;
+	color: #4461f2;
+}
+
+.studentActions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.emptyStudents {
+	font-size: 14px;
+	line-height: 1.45;
+	color: #8a96ab;
+}
+
+.studentsList {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.studentCard {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	padding: 14px 16px;
+	border: 1px solid #e4e9f2;
+	border-radius: 14px;
+	background: #fff;
+}
+
+.studentCardMain {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	min-width: 0;
+}
+
+.studentLogin {
+	font-size: 15px;
+	font-weight: 600;
+	color: #122142;
+	word-break: break-word;
+}
+
+.studentTypeBadge {
+	flex-shrink: 0;
+	padding: 4px 10px;
+	border-radius: 999px;
+	background: #edf1ff;
+	font-size: 12px;
+	font-weight: 600;
+	color: #4461f2;
+}
+
+.studentPassword {
+	flex-shrink: 0;
+	font-size: 13px;
+	color: #60708f;
+}
+
+.saveAllRow {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	justify-content: flex-start;
+	padding-top: 8px;
+}
+
+.selectedStaffRow {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: 12px;
+}
+
+.selectedStaffCard {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	padding: 14px 16px;
+	border: 1px solid #e4e9f2;
+	border-radius: 14px;
+	background: #fff;
+}
+
+.selectedStaffLabel {
+	font-size: 13px;
+	font-weight: 600;
+	color: #60708f;
+}
+
+.selectedStaffName {
+	font-size: 16px;
+	font-weight: 700;
+	color: #122142;
+}
+
+.selectedStaffMeta {
+	font-size: 13px;
+	color: #8a96ab;
+}
+
+.selectedStaffEmpty {
+	font-size: 14px;
+	color: #60708f;
+
+	span {
+		color: #8a96ab;
+	}
+}
+
+.staffPanel {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	padding: 18px;
+	border: 1px solid #dfe6ff;
+	border-radius: 16px;
+	background: linear-gradient(180deg, #f8faff 0%, #ffffff 100%);
+}
+
+.staffPanelHeader {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+}
+
+.staffPanelTitle {
+	font-size: 17px;
+	font-weight: 700;
+	color: #122142;
+}
+
+.staffPanelHint {
+	font-size: 14px;
+	line-height: 1.45;
+	color: #60708f;
+}
+
+.staffPanelEmpty {
+	font-size: 14px;
+	line-height: 1.45;
+	color: #8a96ab;
+}
+
+.staffPickList {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.staffPickButton {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 2px;
+	width: 100%;
+	padding: 12px 14px;
+	border: 1px solid #e4e9f2;
+	border-radius: 12px;
+	background: #fff;
+	cursor: pointer;
+	text-align: left;
+	transition: border-color 0.15s ease, background-color 0.15s ease;
+
+	&:hover {
+		border-color: #4461f2;
+		background: #f8faff;
+	}
+}
+
+.staffPickButtonActive {
+	border-color: #4461f2;
+	background: #edf1ff;
+}
+
+.staffPickName {
+	font-size: 15px;
+	font-weight: 600;
+	color: #122142;
+}
+
+.staffPickLogin {
+	font-size: 13px;
+	color: #60708f;
+}
+
+.staffPanelActions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+}

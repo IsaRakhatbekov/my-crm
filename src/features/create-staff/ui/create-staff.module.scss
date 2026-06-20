@@ -1,0 +1,92 @@
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	width: 100%;
+}
+
+.panel {
+	max-width: 760px;
+}
+
+.actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.panel {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	padding: 18px;
+	border: 1px solid #dfe6ff;
+	border-radius: 16px;
+	background: linear-gradient(180deg, #f8faff 0%, #ffffff 100%);
+}
+
+.panelTitle {
+	font-size: 17px;
+	font-weight: 700;
+	color: #122142;
+}
+
+.panelHint {
+	font-size: 14px;
+	line-height: 1.45;
+	color: #60708f;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+}
+
+.field {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.select {
+	width: 100%;
+	height: 48px;
+	padding: 0 16px;
+	border: 1px solid #d1d8e0;
+	border-radius: 12px;
+	background-color: #fff;
+	color: #13213a;
+	font-size: 15px;
+	cursor: pointer;
+
+	&:focus-visible {
+		outline: none;
+		border-color: #4461f2;
+		box-shadow: 0 0 0 3px rgba(68, 97, 242, 0.14);
+	}
+}
+
+.detectedType {
+	font-size: 13px;
+	color: #4461f2;
+}
+
+.formActions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.message {
+	font-size: 14px;
+	line-height: 1.4;
+}
+
+.success {
+	color: #1f7a45;
+}
+
+.error {
+	color: #c0392b;
+}

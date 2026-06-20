@@ -7,6 +7,7 @@ import {
 	getHomeworkSubmission,
 	saveHomeworkSubmission,
 } from '@/features/homework-submission'
+import { BackIconButton } from '@/shared/ui/back-icon-button'
 import { CodeEditor } from '@/shared/ui/code-editor'
 import { HomeworkList } from '@/widgets/homework-list'
 
@@ -132,36 +133,7 @@ export default function HomeworkWorkspace({ items }: HomeworkWorkspaceProps) {
 			className={`${styles.workspace} ${isSwitchingToList ? styles.fadeOut : styles.fadeIn}`}
 		>
 			<div className={styles.workspaceHeader}>
-				<button
-					className={styles.backButton}
-					type='button'
-					onClick={handleBackToList}
-				>
-					<span aria-hidden='true'>
-						<svg
-							viewBox='0 0 24 24'
-							fill='none'
-							xmlns='http://www.w3.org/2000/svg'
-						>
-							<g id='SVGRepo_bgCarrier' strokeWidth='0'></g>
-							<g
-								id='SVGRepo_tracerCarrier'
-								strokeLinecap='round'
-								strokeLinejoin='round'
-							></g>
-							<g id='SVGRepo_iconCarrier'>
-								{' '}
-								<path
-									d='M6 12H18M6 12L11 7M6 12L11 17'
-									stroke='#000000'
-									strokeWidth='1'
-									strokeLinecap='round'
-									strokeLinejoin='round'
-								></path>{' '}
-							</g>
-						</svg>
-					</span>
-				</button>
+				<BackIconButton onClick={handleBackToList} />
 				<h2 className={styles.title}>{lessonTitle}</h2>
 			</div>
 
