@@ -1,6 +1,11 @@
 import { getGroupDetails } from '@/features/create-group/api/actions'
-import GroupStudentsTable from '@/features/create-group/ui/group-students-table'
 import { BackIconButton } from '@/shared/ui/back-icon-button'
+import {
+	GroupStudentsAddPanel,
+	GroupStudentsCountCard,
+	GroupStudentsProvider,
+	GroupStudentsTable,
+} from '@/widgets/group-students-section'
 
 import pageStyles from '../../pages.module.scss'
 import styles from './page.module.scss'
@@ -29,25 +34,31 @@ export default async function GroupDetailsPage({ params }: GroupDetailsPageProps
 
 			<h1 className={pageStyles.title}>{data.group.courseName}</h1>
 
-			<div className={styles.infoGrid}>
-				<div className={styles.infoCard}>
-					<p className={styles.infoLabel}>Студентов</p>
-					<p className={styles.infoValue}>{data.group.studentsCount}</p>
+			<GroupStudentsProvider groupId={groupId} initialStudents={data.students}>
+				<div className={styles.infoGrid}>
+					<GroupStudentsCountCard
+						cardClassName={styles.infoCard}
+						labelClassName={styles.infoLabel}
+						valueClassName={styles.infoValue}
+					/>
+					<div className={styles.infoCard}>
+						<p className={styles.infoLabel}>Ментор</p>
+						<p className={styles.infoValue}>{data.group.mentorName ?? 'не назначен'}</p>
+					</div>
+					<div className={styles.infoCard}>
+						<p className={styles.infoLabel}>Помощник</p>
+						<p className={styles.infoValue}>{data.group.assistantName ?? 'не назначен'}</p>
+					</div>
 				</div>
-				<div className={styles.infoCard}>
-					<p className={styles.infoLabel}>Ментор</p>
-					<p className={styles.infoValue}>{data.group.mentorName ?? 'не назначен'}</p>
-				</div>
-				<div className={styles.infoCard}>
-					<p className={styles.infoLabel}>Помощник</p>
-					<p className={styles.infoValue}>{data.group.assistantName ?? 'не назначен'}</p>
-				</div>
-			</div>
 
-			<div className={styles.section}>
-				<h2 className={styles.sectionTitle}>Студенты группы</h2>
-				<GroupStudentsTable students={data.students} />
-			</div>
+				<div className={styles.section}>
+					<div className={styles.sectionHeader}>
+						<h2 className={styles.sectionTitle}>Студенты группы</h2>
+						<GroupStudentsAddPanel />
+					</div>
+					<GroupStudentsTable emptyMessage='В этой группе пока нет студентов.' />
+				</div>
+			</GroupStudentsProvider>
 		</section>
 	)
 }

@@ -3,7 +3,7 @@
 import { randomUUID } from 'crypto'
 
 import type { StaffListItem, StaffMember, StaffLoginType, StaffRole } from '@/entities/staff'
-import { detectLoginType } from '@/entities/student'
+import { detectLoginType } from '@/shared/lib/detect-login-type'
 import { isUserRole } from '@/entities/user'
 import { DEMO_ROLE_COOKIE } from '@/shared/lib/demo-role/constants'
 import { createAdminClient } from '@/shared/lib/supabase/admin'

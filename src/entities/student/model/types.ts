@@ -1,23 +1,28 @@
 export type StudentLoginType = 'phone' | 'email' | 'name'
 
-export interface GroupStudent {
+export interface Student {
 	id: string
-	groupId: string
-	loginType: StudentLoginType
+	userId: string | null
 	login: string
-	password: string
+	loginType: StudentLoginType
+	fullName: string
 	createdAt: string
 }
 
-export interface DraftGroupStudent {
+export interface StudentInGroup extends Student {
+	membershipId: string
+	groupId: string
+}
+
+export interface DraftStudent {
 	id: string
-	loginType: StudentLoginType
 	login: string
+	loginType: StudentLoginType
 	password: string
 }
 
-export const STUDENT_LOGIN_TYPE_LABELS: Record<StudentLoginType, string> = {
-	phone: 'Телефон',
-	email: 'Gmail',
-	name: 'Имя',
+export interface StudentDetails {
+	student: StudentInGroup
+	groupId: string
+	groupCourseName: string
 }

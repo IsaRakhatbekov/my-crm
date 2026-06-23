@@ -1,0 +1,55 @@
+.empty {
+	font-size: 14px;
+	line-height: 1.45;
+	color: #8a96ab;
+}
+
+.list {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.card {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	padding: 14px 16px;
+	border: 1px solid #e4e9f2;
+	border-radius: 14px;
+	background: #fff;
+}
+
+.cardMain {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	min-width: 0;
+}
+
+.login {
+	font-size: 15px;
+	font-weight: 600;
+	color: #122142;
+	word-break: break-word;
+}
+
+.typeBadge {
+	flex-shrink: 0;
+	padding: 4px 10px;
+	border-radius: 999px;
+	background: #edf1ff;
+	font-size: 12px;
+	font-weight: 600;
+	color: #4461f2;
+}
+
+.passwordHint {
+	flex-shrink: 0;
+	font-size: 13px;
+	color: #60708f;
+}

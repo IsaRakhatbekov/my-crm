@@ -3,7 +3,7 @@ import type { ButtonHTMLAttributes } from 'react'
 import styles from './button.module.scss'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-	variant?: 'primary' | 'secondary'
+	variant?: 'primary' | 'secondary' | 'danger'
 }
 
 export default function Button({
@@ -12,7 +12,12 @@ export default function Button({
 	type = 'button',
 	...props
 }: ButtonProps) {
-	const variantClass = variant === 'primary' ? styles.primary : styles.secondary
+	const variantClass =
+		variant === 'primary'
+			? styles.primary
+			: variant === 'danger'
+				? styles.danger
+				: styles.secondary
 
 	return (
 		<button

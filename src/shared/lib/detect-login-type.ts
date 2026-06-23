@@ -1,6 +1,6 @@
-import type { StudentLoginType } from '../model/types'
+export type LoginType = 'phone' | 'email' | 'name'
 
-export function detectLoginType(value: string): StudentLoginType {
+export function detectLoginType(value: string): LoginType {
 	const trimmed = value.trim()
 
 	if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) {

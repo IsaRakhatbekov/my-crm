@@ -4,16 +4,18 @@ import { useState } from 'react'
 
 import type { GroupListItem } from '@/entities/group'
 import type { StaffMember } from '@/entities/staff'
-import type { DraftGroupStudent } from '@/entities/student'
+import type { DraftStudent } from '@/entities/student'
 import { saveGroupWithStudents } from '@/features/create-group/api/actions'
+import {
+	CreateStudentForm,
+	DraftStudentsList,
+} from '@/features/create-student'
 import { Button } from '@/shared/ui/button'
 import { Input } from '@/shared/ui/input'
 import { Label } from '@/shared/ui/label'
 
 import AddMemberActions, { type MemberPanel } from './add-member-actions'
-import AddStudentForm from './add-student-form'
 import AssignStaffPanel from './assign-staff-panel'
-import GroupStudentsList from './group-students-list'
 import SelectedStaffCard from './selected-staff-card'
 import styles from './create-group-form.module.scss'
 
@@ -31,7 +33,7 @@ export default function CreateGroupForm({
 	onCancel,
 }: CreateGroupFormProps) {
 	const [courseName, setCourseName] = useState('')
-	const [draftStudents, setDraftStudents] = useState<DraftGroupStudent[]>([])
+	const [draftStudents, setDraftStudents] = useState<DraftStudent[]>([])
 	const [mentor, setMentor] = useState<StaffMember | null>(null)
 	const [assistant, setAssistant] = useState<StaffMember | null>(null)
 	const [activePanel, setActivePanel] = useState<MemberPanel | null>(null)
@@ -39,7 +41,7 @@ export default function CreateGroupForm({
 	const [isError, setIsError] = useState(false)
 	const [isSaving, setIsSaving] = useState(false)
 
-	const handleAddStudent = (student: DraftGroupStudent) => {
+	const handleAddStudent = (student: DraftStudent) => {
 		const duplicate = draftStudents.some(
 			item => item.login.toLowerCase() === student.login.toLowerCase(),
 		)
@@ -140,7 +142,11 @@ export default function CreateGroupForm({
 				</div>
 
 				{activePanel === 'student' ? (
-					<AddStudentForm onAdded={handleAddStudent} onCancel={() => setActivePanel(null)} />
+					<CreateStudentForm
+						mode='draft'
+						onDraftAdd={handleAddStudent}
+						onCancel={() => setActivePanel(null)}
+					/>
 				) : null}
 
 				{activePanel === 'mentor' ? (
@@ -171,7 +177,7 @@ export default function CreateGroupForm({
 					/>
 				) : null}
 
-				<GroupStudentsList students={draftStudents} />
+				<DraftStudentsList students={draftStudents} />
 			</section>
 
 			<div className={styles.saveAllRow}>

@@ -1,9 +1,12 @@
 'use server'
 
-import { randomUUID } from 'crypto'
-
 import type { Group, GroupListItem } from '@/entities/group'
-import { detectLoginType, type DraftGroupStudent, type StudentLoginType } from '@/entities/student'
+import {
+	loadStudentsInGroup,
+	type DraftStudent,
+	type StudentInGroup,
+} from '@/entities/student'
+import { persistStudent } from '@/features/create-student/api/lib/persist-student'
 import { isUserRole } from '@/entities/user'
 import { DEMO_ROLE_COOKIE } from '@/shared/lib/demo-role/constants'
 import { createAdminClient } from '@/shared/lib/supabase/admin'
@@ -15,7 +18,7 @@ type ActionResult<T> =
 
 interface SaveGroupInput {
 	courseName: string
-	students: Array<Pick<DraftGroupStudent, 'login' | 'password'>>
+	students: Array<Pick<DraftStudent, 'login' | 'password'>>
 	mentor: string | null
 	assistant: string | null
 }
@@ -28,17 +31,9 @@ interface GroupRow {
 	created_at: string
 }
 
-interface GroupStudentRow {
-	id: string
-	group_id: string
-	login: string
-	login_type: StudentLoginType
-	created_at: string
-}
-
 interface GroupDetails {
 	group: GroupListItem
-	students: GroupStudentRow[]
+	students: StudentInGroup[]
 }
 
 interface GroupSummaryRow {
@@ -67,56 +62,6 @@ function mapGroup(row: GroupRow): Group {
 		courseName: row.course_name,
 		createdAt: row.created_at,
 	}
-}
-
-async function createStudentAuthUser(
-	login: string,
-	loginType: StudentLoginType,
-	password: string,
-) {
-	const admin = createAdminClient()
-
-	if (loginType === 'email') {
-		return admin.auth.admin.createUser({
-			email: login,
-			password,
-			email_confirm: true,
-			user_metadata: {
-				role: 'student',
-				login_type: 'email',
-				login,
-			},
-		})
-	}
-
-	if (loginType === 'phone') {
-		const phone = login.startsWith('+') ? login : `+${login.replace(/\D/g, '')}`
-
-		return admin.auth.admin.createUser({
-			phone,
-			password,
-			phone_confirm: true,
-			user_metadata: {
-				role: 'student',
-				login_type: 'phone',
-				login,
-			},
-		})
-	}
-
-	const email = `${randomUUID()}@students.local`
-
-	return admin.auth.admin.createUser({
-		email,
-		password,
-		email_confirm: true,
-		user_metadata: {
-			role: 'student',
-			login_type: 'name',
-			login,
-			display_name: login,
-		},
-	})
 }
 
 export async function saveGroupWithStudents({
@@ -195,36 +140,21 @@ export async function saveGroupWithStudents({
 
 	for (const student of students) {
 		const trimmedLogin = student.login.trim()
-		const trimmedPassword = student.password
 
 		if (!trimmedLogin) {
 			await supabase.from('groups').delete().eq('id', groupRow.id)
 			return { error: 'У одного из студентов не указан логин' }
 		}
 
-		const loginType = detectLoginType(trimmedLogin)
-		const { data: authData, error: authError } = await createStudentAuthUser(
-			trimmedLogin,
-			loginType,
-			trimmedPassword,
-		)
-
-		if (authError || !authData.user) {
-			await supabase.from('groups').delete().eq('id', groupRow.id)
-			return { error: authError?.message ?? 'Не удалось создать аккаунт студента' }
-		}
-
-		const { error: studentError } = await supabase.from('group_students').insert({
-			group_id: groupRow.id,
-			user_id: authData.user.id,
+		const result = await persistStudent({
 			login: trimmedLogin,
-			login_type: loginType,
+			password: student.password,
+			groupId: groupRow.id,
 		})
 
-		if (studentError) {
-			await createAdminClient().auth.admin.deleteUser(authData.user.id)
+		if (result.error) {
 			await supabase.from('groups').delete().eq('id', groupRow.id)
-			return { error: studentError.message }
+			return { error: result.error }
 		}
 	}
 
@@ -256,28 +186,6 @@ export async function getGroups(): Promise<ActionResult<GroupListItem[]>> {
 			assistantName: row.assistant_name,
 		})),
 	}
-}
-
-export async function getGroupStudents(groupId: string): Promise<ActionResult<GroupStudentRow[]>> {
-	const access = await assertManagerAccess()
-
-	if (access.error) {
-		return { error: access.error }
-	}
-
-	const supabase = createAdminClient()
-
-	const { data, error } = await supabase
-		.from('group_students')
-		.select('id, group_id, login, login_type, created_at')
-		.eq('group_id', groupId)
-		.order('created_at', { ascending: true })
-
-	if (error) {
-		return { error: error.message }
-	}
-
-	return { data: (data ?? []) as GroupStudentRow[] }
 }
 
 export async function getGroupDetails(groupId: string): Promise<ActionResult<GroupDetails>> {
@@ -327,27 +235,25 @@ export async function getGroupDetails(groupId: string): Promise<ActionResult<Gro
 		}
 	}
 
-	const { data: studentsRows, error: studentsError } = await supabase
-		.from('group_students')
-		.select('id, group_id, login, login_type, created_at')
-		.eq('group_id', trimmedGroupId)
-		.order('created_at', { ascending: true })
+	const studentsResult = await loadStudentsInGroup(supabase, trimmedGroupId)
 
-	if (studentsError) {
-		return { error: studentsError.message }
+	if (studentsResult.error) {
+		return { error: studentsResult.error }
 	}
+
+	const students = studentsResult.data ?? []
 
 	return {
 		data: {
 			group: {
 				...mapGroup(groupRow as GroupRow),
-				studentsCount: (studentsRows ?? []).length,
+				studentsCount: students.length,
 				mentorName: groupRow.mentor_id ? (staffNamesById[groupRow.mentor_id] ?? '—') : null,
 				assistantName: groupRow.assistant_id
 					? (staffNamesById[groupRow.assistant_id] ?? '—')
 					: null,
 			},
-			students: (studentsRows ?? []) as GroupStudentRow[],
+			students,
 		},
 	}
 }

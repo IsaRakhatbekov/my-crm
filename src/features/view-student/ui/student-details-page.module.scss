@@ -1,3 +1,23 @@
+.page {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.title {
+	font-size: clamp(28px, 4vw, 36px);
+	font-weight: 700;
+	line-height: 1.1;
+	color: #122142;
+}
+
+.text {
+	max-width: 700px;
+	font-size: 16px;
+	line-height: 1.55;
+	color: #60708f;
+}
+
 .infoGrid {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -30,23 +50,12 @@
 	word-break: break-word;
 }
 
-.section {
-	display: flex;
-	flex-direction: column;
-	gap: 14px;
-	width: 100%;
-}
+.groupLink {
+	color: #4461f2;
+	font-weight: 600;
+	text-decoration: none;
 
-.sectionHeader {
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	justify-content: space-between;
-	gap: 12px;
-}
-
-.sectionTitle {
-	font-size: 20px;
-	font-weight: 700;
-	color: #122142;
+	&:hover {
+		text-decoration: underline;
+	}
 }

@@ -8,7 +8,8 @@ import {
 	type StaffListItem,
 	type StaffRole,
 } from '@/entities/staff'
-import { detectLoginType, STUDENT_LOGIN_TYPE_LABELS } from '@/entities/student'
+import { LOGIN_TYPE_LABELS } from '@/entities/student'
+import { detectLoginType } from '@/shared/lib/detect-login-type'
 import { saveStaffMember } from '@/features/create-staff/api/actions'
 import { Button } from '@/shared/ui/button'
 import { Input } from '@/shared/ui/input'
@@ -115,7 +116,7 @@ function AddStaffForm({ onSaved, onCancel }: AddStaffFormProps) {
 					/>
 					{detectedLoginType ? (
 						<p className={styles.detectedType}>
-							Определено как: {STUDENT_LOGIN_TYPE_LABELS[detectedLoginType]}
+							Определено как: {LOGIN_TYPE_LABELS[detectedLoginType]}
 						</p>
 					) : null}
 				</div>

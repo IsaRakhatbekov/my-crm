@@ -1,0 +1,74 @@
+.panel {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	padding: 18px;
+	border: 1px solid #dfe6ff;
+	border-radius: 16px;
+	background: linear-gradient(180deg, #f8faff 0%, #ffffff 100%);
+}
+
+.header {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+}
+
+.title {
+	font-size: 17px;
+	font-weight: 700;
+	color: #122142;
+}
+
+.hint {
+	font-size: 14px;
+	line-height: 1.45;
+	color: #60708f;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+}
+
+.field {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.detectedType {
+	font-size: 13px;
+	color: #4461f2;
+}
+
+.actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.message {
+	font-size: 14px;
+	line-height: 1.4;
+}
+
+.success {
+	color: #1f7a45;
+}
+
+.error {
+	color: #c0392b;
+}
+
+.select {
+	width: 100%;
+	height: 48px;
+	padding: 0 14px;
+	border: 1px solid #e4e9f2;
+	border-radius: 12px;
+	background: #fff;
+	font-size: 15px;
+	color: #122142;
+}

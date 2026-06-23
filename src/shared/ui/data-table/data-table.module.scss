@@ -42,7 +42,28 @@
 	border-bottom: 0;
 }
 
-.table tbody tr:hover {
+.clickableRow {
+	cursor: pointer;
+}
+
+.rowLink {
+	display: contents;
+	color: inherit;
+	text-decoration: none;
+}
+
+.rowCellLink {
+	color: inherit;
+	font-weight: inherit;
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+.table tbody tr:hover,
+.rowLink:hover tr {
 	background: #fafbfd;
 }
 

@@ -38,3 +38,15 @@
 		background-color: #dfe6ff;
 	}
 }
+
+.danger {
+	height: 36px;
+	padding: 0 14px;
+	font-size: 13px;
+	background-color: #fee2e2;
+	color: #b91c1c;
+
+	&:hover:not(:disabled) {
+		background-color: #fecaca;
+	}
+}
